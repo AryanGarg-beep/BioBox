@@ -7,14 +7,14 @@ app = Flask(__name__)
 class MockServo:
     def __init__(self, pin):
         self.pin = pin
-        self.position = 0  # Assume position is in degrees
+        self.position = 0  # degrees
 
     def max(self):
-        self.position = 95  # Simulate moving to 95 degrees
+        self.position = 95  # 95 degrees
         print(f"Servo on pin {self.pin} moved to {self.position} degrees.")
 
     def min(self):
-        self.position = 0  # Simulate moving to 0 degrees
+        self.position = 0  # 0 degrees
         print(f"Servo on pin {self.pin} moved to {self.position} degrees.")
 
 # Define mock GPIO pins for servos
@@ -29,9 +29,9 @@ def index():
 def move_servo(servo_index, action):
     if 0 <= servo_index < len(servos):
         if action == 'on':
-            servos[servo_index].max()  # Simulate moving to max position (95 degrees)
-            sleep(3)  # Wait for 1 second for servo to reach position
-            servos[servo_index].min()  # Simulate moving back to min position (0 degrees)
+            servos[servo_index].max()  # (95 degrees)
+            sleep(3)  #  reach position
+            servos[servo_index].min()  #  (0 degrees)
         return jsonify({'status': 'success', 'servo_index': servo_index, 'action': action})
     return jsonify({'status': 'error', 'message': 'Invalid servo index'}), 400
 
